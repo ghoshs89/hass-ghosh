@@ -1,0 +1,221 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude_Home
+  longitude: !secret longitude_Home
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 705
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Edmonton
+
+#customize: !include customize.yaml
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+http:
+  # Uncomment this to add a password (recommended!)
+   api_password: !secret http_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+   ssl_certificate: !secret ssl_certificate
+   ssl_key: !secret ssl_key
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Include automation modules
+automation: !include automation.yaml
+
+#Inlcude groups:
+#group: !include groups.yaml
+
+# Weather Prediction
+sensor:
+  - platform: openweathermap
+    api_key: !secret api_key_owm
+    name: YEG
+    forecast:
+    monitored_conditions:
+      - temperature
+      - clouds
+      - weather
+      - wind_speed
+      - humidity
+  - platform: waqi
+    token: !secret waqi_api_key
+    locations:
+      - edmonton
+    stations:
+      - Edmonton South, Alberta
+# Network condition
+  - platform: fastdotcom
+    minute:
+      - 0
+      - 5
+
+# ESP8266 Sensor:
+  - platform: mqtt  
+    state_topic: "bruh/sensornode1"  
+    name: "Humidity"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  
+  - platform: mqtt  
+    state_topic: "bruh/sensornode1"  
+    name: "Light Intensity"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"  
+    value_template: '{{ value_json.ldr }}'  
+  
+  - platform: mqtt  
+    state_topic: "bruh/sensornode1"  
+    name: "Activity"  
+    value_template: '{{ value_json.motion }}'  
+  
+  - platform: mqtt  
+    state_topic: "bruh/sensornode1"  
+    name: "Temperature"  
+    unit_of_measurement: "°F"  
+    value_template: '{{ value_json.temperature | round(1) }}'  
+  
+  
+group:  
+  sensor_node_1_card:  
+    name: Master bedroom  
+    entities:  
+      - sensor.sn1_temperature  
+      - sensor.sn1_humidity  
+      - sensor.sn1_ldr  
+      - sensor.sn1_pir  
+      - light.sn1_led
+      
+light:  
+  - platform: mqtt_json  
+    name: "SN1 LED"  
+    state_topic: "bruh/sensornode1"  
+    command_topic: "bruh/sensornode1/set"  
+    brightness: true  
+    flash: true  
+    rgb: true  
+    optimistic: false  
+    qos: 0  
+    
+# People's location
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 80
+    waypoints: True
+    waypoint_whitelist:
+      - soumalya
+      - aindrila
+
+# This will override the default home zone
+zone 1:
+    name: Home
+    latitude: !secret zone1_latitude
+    longitude: !secret zone1_longitude
+    radius: 250
+    icon: mdi:home
+
+# Define work location
+zone 2:
+    name: Work
+    latitude: !secret zone2_latitude
+    longitude: !secret zone2_longitude
+    radius: 400
+    icon: mdi:work
+
+# Define school location
+zone 3:
+    name: University
+    latitude: !secret zone3_latitude
+    longitude: !secret zone3_longitude
+    radius: 380
+    icon: mdi:school
+    
+# Ledger
+zone 4:
+    name: Ledger
+    latitude: !secret zone4_latitude
+    longitude: !secret zone4_longitude
+    radius: 100
+    icon: mdi:school
+
+# South Campus
+zone 5:
+    name: South Campus
+    latitude: !secret zone5_latitude
+    longitude: !secret zone5_longitude
+    radius: 150
+    icon: mdi:school
+    
+# Century Park
+zone 6:
+    name: Century Park
+    latitude: !secret zone6_latitude
+    longitude: !secret zone6_longitude
+    radius: 150
+    icon: mdi:school    
+
+mqtt:
+#    broker: 192.168.X.XX
+#    port: 1883
+#    client_id: home-assistant-1
+#    keepalive: 60
+#    username: XXXX
+#    password: XXXXXX
+ 
+    broker: !secret broker
+    port: !secret mqtt_port
+    username: homeassistant
+    password: !secret mqtt_pass
+
+# IFTTT integration entry
+ifttt:
+   key: !secret ifttt_key
+
+# Read the tp-link switch status
+switch:
+   - platform: tplink
+     host: 192.168.1.90
+     name: Kitchen LEDs
+
+# Kodi
+media_player:
+  - platform: kodi
+    host: 192.168.1.74
+    name: Kodi - Android TV Box
+    tugn_off_action: shutdown
+    enable_websocket: true
+  - platform: samsungtv
+    host: 192.168.1.73
+    name: Samsung_TV
+
+# Example configuration.yaml entry
+#android_ip_webcam:
+  # This should be the ip of your phone
+#  - host: 192.168.0.38
+#    name: Entrance
+
+
