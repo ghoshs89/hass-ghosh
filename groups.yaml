@@ -1,41 +1,59 @@
-default_view:
-  view: yes
-  entities:
-    - group.weather
-    - group.awesome_people
-    - group.media
-    - group.network
- 
-  weather:
-    name: Weather
-    view: yes
+sensor_node_1_card:  
+    name: Master bedroom  
+    entities:  
+      - sensor.temperature  
+      - sensor.humidity  
+      - sensor.light_intensity  
+      - sensor.activity  
+      - light.board_led
+  
+security_system_card:  
+    name: Security System
+    view: no
+    icon: mdi:security
     entities:
+      - sensor.sliding_door
+      - sensor.front_door
+      - sensor.motion_sensor
+      - sensor.shutter_sensor
+      - sensor.hub_state
+      
+media_systems_card:
+    name: Media
+    view: no
+    icon: mdi:television-guide
+    entities:
+      - media_player.kodi
+      - media_player.samsung_tv
+     
+awesome_people:
+    name: People
+    icon: mdi:human-male-female
+    view: no
+    entities:
+      - device_tracker.aindrila_location
+      - device_tracker.soumalya_location
+      
+Climate:
+    name: Edmonton Weather
+    view: yes
+    icon: mdi:weather-windy-variant
+    entities:
+      - sun.sun
+      - sensor.yeg_temperature
+      - sensor.yeg_condition
+      - sensor.yeg_wind_speed
+      - sensor.yeg_humidity
       - sensor.yeg_cloud_coverage
       - sensor.waqi_edmonton_south_alberta
-      - sensor.yeg_condition
-      - sensor.yeg_humidity
-      - sensor.yeg_temperature
-      - sensor.yeg_wind_speed
-      - sun.sun
-      - binary_sensor.aurora_visibility
-  
-  awesome_people:
-    name: Awesome People
+
+system_health:
+    name: System Health
     view: yes
+    icon: mdi:server-security
     entities:
-      - device_tracker.988673494733504852
-      - device_tracker.zy2232bblf
-      
-  network:
-    name: Network monitoring
-    view: yes
-    entities:
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-  
-  media:
-    name: Media
-    view: yes
-    entities:
-      - media_player.kodi__android_tv_box
-      - media_player.samsung_tv
+      - sensor.cpuspeed
+      - sensor.hddtemp
+      - sensor.linux_battery
+      - sensor.systemmonitor
+

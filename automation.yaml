@@ -1,32 +1,3 @@
-#- alias: Soumalya reached home
-#  trigger:
-#    platform: state
-#    entity_id: device_tracker.988673494733504852
-#    from: not_home
-#    to: home    
-#  action:
-#    service: ifttt.trigger
-#    data: {"event":"disarm_home"}   
-   
-#- alias: Aindrila reached home
-#  trigger:
-#    platform: state
-#    entity_id: device_tracker.zy2232bblf
-#    from: not_home
-#    to: home    
-#  action:
-#    service: ifttt.trigger
-#    data: {"event":"disarm_home"}  
-
-#- alias: Aindrila reached university
-#  trigger:
-#    platform: state
-#    entity_id: device_tracker.aindrila_phone
-#    to: University
-#  action:
-#    service: ifttt.trigger
-#    data: {"event":"TestHA_Trigger", "value1":"Aindrila reached university"}
-
 - alias: Arm home - away
   trigger:
     - platform: state
@@ -76,7 +47,7 @@
 - alias: Arm home - home
   trigger:
     - platform: time
-      after: '23:30:00'      
+      at: '23:30:00'      
   condition:
       condition: and
       conditions:

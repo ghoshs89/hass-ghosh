@@ -73,7 +73,19 @@ sensor:
     minute:
       - 0
       - 5
+  
+  - platform: cpuspeed
+  - platform: hddtemp
+  - platform: linux_battery
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free  
 
+  - platform: pi_hole
+
+      
 # ESP8266 Sensor:
   - platform: mqtt  
     state_topic: "bruh/sensornode1"  
@@ -100,19 +112,11 @@ sensor:
     value_template: '{{ value_json.temperature | round(1) }}'  
   
   
-group:  
-  sensor_node_1_card:  
-    name: Master bedroom  
-    entities:  
-      - sensor.sn1_temperature  
-      - sensor.sn1_humidity  
-      - sensor.sn1_ldr  
-      - sensor.sn1_pir  
-      - light.sn1_led
+group: !include groups.yaml
       
 light:  
   - platform: mqtt_json  
-    name: "SN1 LED"  
+    name: "Board LED"  
     state_topic: "bruh/sensornode1"  
     command_topic: "bruh/sensornode1/set"  
     brightness: true  
@@ -130,13 +134,14 @@ device_tracker:
       - soumalya
       - aindrila
 
+
 # This will override the default home zone
 zone 1:
     name: Home
     latitude: !secret zone1_latitude
     longitude: !secret zone1_longitude
     radius: 250
-    icon: mdi:home
+    icon: mdi:home-outline
 
 # Define work location
 zone 2:
@@ -144,7 +149,7 @@ zone 2:
     latitude: !secret zone2_latitude
     longitude: !secret zone2_longitude
     radius: 400
-    icon: mdi:work
+    icon: mdi:briefcase
 
 # Define school location
 zone 3:
@@ -160,7 +165,7 @@ zone 4:
     latitude: !secret zone4_latitude
     longitude: !secret zone4_longitude
     radius: 100
-    icon: mdi:school
+    icon: mdi:transit-transfer
 
 # South Campus
 zone 5:
@@ -168,7 +173,7 @@ zone 5:
     latitude: !secret zone5_latitude
     longitude: !secret zone5_longitude
     radius: 150
-    icon: mdi:school
+    icon: mdi:transit-transfer
     
 # Century Park
 zone 6:
@@ -176,7 +181,7 @@ zone 6:
     latitude: !secret zone6_latitude
     longitude: !secret zone6_longitude
     radius: 150
-    icon: mdi:school    
+    icon: mdi:transit-transfer
 
 mqtt:
 #    broker: 192.168.X.XX
@@ -199,13 +204,13 @@ ifttt:
 switch:
    - platform: tplink
      host: 192.168.1.90
-     name: Kitchen LEDs
+     name: Living Room LEDs
 
 # Kodi
 media_player:
   - platform: kodi
     host: 192.168.1.74
-    name: Kodi - Android TV Box
+    name: Kodi
     tugn_off_action: shutdown
     enable_websocket: true
   - platform: samsungtv
