@@ -74,9 +74,9 @@ sensor:
       - 0
       - 5
   
-  - platform: cpuspeed
-  - platform: hddtemp
-  - platform: linux_battery
+#  - platform: cpuspeed
+#  - platform: hddtemp
+#  - platform: linux_battery
   - platform: systemmonitor
     resources:
       - type: disk_use_percent

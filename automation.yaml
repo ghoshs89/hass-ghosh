@@ -1,21 +1,21 @@
 - alias: Arm home - away
   trigger:
     - platform: state
-      entity_id: device_tracker.aindrila_location
+      entity_id: 'device_tracker.aindrila_location'
       from: 'home'
       to: 'not_home'
     - platform: state
-      entity_id: device_tracker.soumalya_location
+      entity_id: 'device_tracker.soumalya_location'
       from: 'home'
       to: 'not_home'
   condition:
       condition: and
       conditions:
         - condition: state
-          entity_id: device_tracker.aindrila_location
+          entity_id: 'device_tracker.aindrila_location'
           state: 'not_home'
         - condition: state
-          entity_id: device_tracker.soumalya_location
+          entity_id: 'device_tracker.soumalya_location'
           state: 'not_home'
   action:
     service: ifttt.trigger
@@ -24,21 +24,21 @@
 - alias: Disarm home
   trigger:
     - platform: state
-      entity_id: device_tracker.aindrila_location
+      entity_id: 'device_tracker.aindrila_location'
       from: 'not_home'
       to: 'home'
     - platform: state
-      entity_id: device_tracker.soumalya_location
+      entity_id: 'device_tracker.soumalya_location'
       from: 'not_home'
       to: 'home'
 #  condition:
 #      condition: and
 #      conditions:
 #        - condition: state
-#          entity_id: device_tracker.aindrila_location
+#          entity_id: 'device_tracker.aindrila_location'
 #          state: 'not_home'
 #        - condition: state
-#          entity_id: device_tracker.soumalya_location
+#          entity_id: 'device_tracker.soumalya_location'
 #          state: 'not_home'
   action:
     service: ifttt.trigger
@@ -52,10 +52,10 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: device_tracker.aindrila_location
+          entity_id: 'device_tracker.aindrila_location'
           state: 'home'
         - condition: state
-          entity_id: device_tracker.soumalya_location
+          entity_id: 'device_tracker.soumalya_location'
           state: 'home'
   action:
     service: ifttt.trigger
