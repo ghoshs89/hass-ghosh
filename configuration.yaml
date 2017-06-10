@@ -26,6 +26,7 @@ http:
    ssl_certificate: !secret ssl_certificate
    ssl_key: !secret ssl_key
 
+
 # Checks for available updates
 updater:
 
@@ -74,15 +75,6 @@ sensor:
       - 0
       - 5
   
-#  - platform: cpuspeed
-#  - platform: hddtemp
-#  - platform: linux_battery
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /home
-      - type: memory_free  
-
   - platform: pi_hole
 
       

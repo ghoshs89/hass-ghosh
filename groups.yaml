@@ -6,6 +6,11 @@ sensor_node_1_card:
       - sensor.light_intensity  
       - sensor.activity  
       - light.board_led
+      
+sensor_node_2_card:
+    name: Living room
+    entities:
+      - switch.living_room_leds
   
 security_system_card:  
     name: Security System
@@ -36,7 +41,7 @@ awesome_people:
       
 Climate:
     name: Edmonton Weather
-    view: yes
+    view: no
     icon: mdi:weather-windy-variant
     entities:
       - sun.sun
@@ -46,14 +51,14 @@ Climate:
       - sensor.yeg_humidity
       - sensor.yeg_cloud_coverage
       - sensor.waqi_edmonton_south_alberta
-
-system_health:
-    name: System Health
-    view: yes
-    icon: mdi:server-security
+      
+Network conditions:
+    name: Network health
+    view: no
+    icon: mdi:server
     entities:
-      - sensor.cpuspeed
-      - sensor.hddtemp
-      - sensor.linux_battery
-      - sensor.systemmonitor
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
+      - sensor.fastcom_download
 
