@@ -1,22 +1,9 @@
 - alias: Arm home - away
   trigger:
     - platform: state
-      entity_id: 'device_tracker.aindrila_location'
+      entity_id: group.awesome_people
       from: 'home'
       to: 'not_home'
-    - platform: state
-      entity_id: 'device_tracker.soumalya_location'
-      from: 'home'
-      to: 'not_home'
-  condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: 'device_tracker.aindrila_location'
-          state: 'not_home'
-        - condition: state
-          entity_id: 'device_tracker.soumalya_location'
-          state: 'not_home'
   action:
     service: ifttt.trigger
     data: {"event":"arm_away"}
@@ -31,15 +18,15 @@
       entity_id: 'device_tracker.soumalya_location'
       from: 'not_home'
       to: 'home'
-#  condition:
-#      condition: and
-#      conditions:
-#        - condition: state
-#          entity_id: 'device_tracker.aindrila_location'
-#          state: 'not_home'
-#        - condition: state
-#          entity_id: 'device_tracker.soumalya_location'
-#          state: 'not_home'
+  condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'device_tracker.aindrila_location'
+          state: 'not_home'
+        - condition: state
+          entity_id: 'device_tracker.soumalya_location'
+          state: 'not_home'
   action:
     service: ifttt.trigger
     data: {"event":"disarm_home"}
