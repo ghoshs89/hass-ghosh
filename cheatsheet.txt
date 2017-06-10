@@ -1,3 +1,5 @@
+Lets Encrypt instructions:
+
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at
    /etc/letsencrypt/live/hass-ghosh.duckdns.org/fullchain.pem. Your
@@ -14,3 +16,17 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+------------------------------------------------------------------------------------------------------
+
+HASS useful commands:
+source in venv: source /srv/homeassistant/homeassistant_venv/bin/activate
+start hass: hass
+check config: hass --script check_config
+
+------------------------------------------------------------------------------------------------------
+
+Git useful commands:
+status: git status
+commit changed files: git commit -am "<Comments>"
+push after commit to repo: git push origin master
+add files to track: git add <filename>
