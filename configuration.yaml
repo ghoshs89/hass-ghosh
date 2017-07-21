@@ -67,15 +67,13 @@ sensor:
     token: !secret waqi_api_key
     locations:
       - edmonton
-    stations:
-      - Edmonton South, Alberta
+
 # Network condition
   - platform: fastdotcom
     minute:
       - 0
       - 5
   
-  - platform: pi_hole
 
       
 # ESP8266 Sensor:
