@@ -63,11 +63,7 @@ sensor:
       - weather
       - wind_speed
       - humidity
-  - platform: waqi
-    token: !secret waqi_api_key
-    locations:
-      - edmonton
-
+      
 # Network condition
   - platform: fastdotcom
     minute:
