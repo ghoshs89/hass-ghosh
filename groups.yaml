@@ -50,7 +50,6 @@ Climate:
       - sensor.yeg_wind_speed
       - sensor.yeg_humidity
       - sensor.yeg_cloud_coverage
-      - sensor.waqi_edmonton_south_alberta
       
 Network conditions:
     name: Network health
