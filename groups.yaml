@@ -50,6 +50,9 @@ Climate:
       - sensor.yeg_wind_speed
       - sensor.yeg_humidity
       - sensor.yeg_cloud_coverage
+      - sensor.yeg_rain
+      - sensor.yeg_snow
+      - sensor.moon
       
 Network conditions:
     name: Network health

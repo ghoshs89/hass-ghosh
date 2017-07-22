@@ -48,8 +48,8 @@ sun:
 # Include automation modules
 automation: !include automation.yaml
 
-#Inlcude groups:
-#group: !include groups.yaml
+#Include groups:
+group: !include groups.yaml
 
 # Weather Prediction
 sensor:
@@ -63,6 +63,17 @@ sensor:
       - weather
       - wind_speed
       - humidity
+	  - rain
+	  - snow
+  
+  - platform: moon
+	  
+  - platform: waqi
+    token: !secret waqi_api_key
+    locations:
+      - edmonton
+    stations:
+      - Edmonton South, Alberta
       
 # Network condition
   - platform: fastdotcom
