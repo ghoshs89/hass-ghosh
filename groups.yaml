@@ -11,6 +11,12 @@ sensor_node_2_card:
     name: Living room
     entities:
       - switch.living_room_leds
+
+indoor_conditions_card:  
+    name: Indoor status
+    entities:
+      - group.sensor_node_1_card
+      - group.sensor_node_2_card
   
 security_system_card:  
     name: Security System
@@ -45,14 +51,24 @@ Climate:
     icon: mdi:weather-windy-variant
     entities:
       - sun.sun
+#      - sensor.yeg_temperature
+#      - sensor.yeg_condition
+#      - sensor.yeg_wind_speed
+#      - sensor.yeg_humidity
+#      - sensor.yeg_cloud_coverage
+#      - sensor.yeg_rain
+#      - sensor.yeg_snow
+      - sensor.moon
+      - sensor.yeg_precip_intensity
+      - sensor.yeg_precip_probability
       - sensor.yeg_temperature
-      - sensor.yeg_condition
+      - sensor.yeg_apparent_temperature
       - sensor.yeg_wind_speed
       - sensor.yeg_humidity
-      - sensor.yeg_cloud_coverage
-      - sensor.yeg_rain
-      - sensor.yeg_snow
-      - sensor.moon
+      - sensor.yeg_visibility
+      - sensor.yeg_daily_high_apparent_temperature
+      - sensor.yeg_daily_low_apparent_temperature
+      - sensor.yeg_nearest_storm_distance
       
 Network conditions:
     name: Network health

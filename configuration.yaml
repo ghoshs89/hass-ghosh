@@ -53,27 +53,39 @@ group: !include groups.yaml
 
 # Weather Prediction
 sensor:
-  - platform: openweathermap
-    api_key: !secret api_key_owm
-    name: YEG
-    forecast:
-    monitored_conditions:
-      - temperature
-      - clouds
-      - weather
-      - wind_speed
-      - humidity
-	  - rain
-	  - snow
-  
+#  - platform: openweathermap
+#    api_key: !secret api_key_owm
+#    name: YEG
+#    forecast:
+#    monitored_conditions:
+#      - temperature
+#      - clouds
+#      - weather
+#      - wind_speed
+#      - humidity
+#      - rain
+#      - snow
   - platform: moon
-	  
   - platform: waqi
     token: !secret waqi_api_key
     locations:
       - edmonton
     stations:
       - Edmonton South, Alberta
+  - platform: darksky
+    api_key: !secret api_key_darkSky
+    name: YEG
+    monitored_conditions:      
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - wind_speed
+      - humidity
+      - visibility
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - nearest_storm_distance
       
 # Network condition
   - platform: fastdotcom
@@ -108,9 +120,7 @@ sensor:
     unit_of_measurement: "°F"  
     value_template: '{{ value_json.temperature | round(1) }}'  
   
-  
-group: !include groups.yaml
-      
+   
 light:  
   - platform: mqtt_json  
     name: "Board LED"  
