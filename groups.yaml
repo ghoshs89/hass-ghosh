@@ -12,22 +12,24 @@ sensor_node_2_card:
     entities:
       - switch.living_room_leds
 
-indoor_conditions_card:  
-    name: Indoor status
-    entities:
-      - group.sensor_node_1_card
-      - group.sensor_node_2_card
+#indoor_conditions_card:  
+#    name: Indoor status
+#    entities:
+#      - group.sensor_node_1_card
+#      - group.sensor_node_2_card
   
 security_system_card:  
     name: Security System
     view: no
     icon: mdi:security
     entities:
+      - sensor.hub_state
+      - binary_sensor.workday_sensor
       - sensor.sliding_door
       - sensor.front_door
       - sensor.motion_sensor
       - sensor.shutter_sensor
-      - sensor.hub_state
+
       
 media_systems_card:
     name: Media
@@ -44,6 +46,13 @@ awesome_people:
     entities:
       - device_tracker.aindrila_location
       - device_tracker.soumalya_location
+
+financial:
+    name: Finance
+    icon: mdi:currency-inr
+    view: no
+    entities:
+      - sensor.c_equals
       
 Climate:
     name: Edmonton Weather
@@ -58,17 +67,18 @@ Climate:
 #      - sensor.yeg_cloud_coverage
 #      - sensor.yeg_rain
 #      - sensor.yeg_snow
-      - sensor.moon
+      - sensor.yeg_apparent_temperature
+      - sensor.yeg_daily_high_apparent_temperature
+      - sensor.yeg_daily_low_apparent_temperature
       - sensor.yeg_precip_intensity
       - sensor.yeg_precip_probability
-      - sensor.yeg_temperature
-      - sensor.yeg_apparent_temperature
       - sensor.yeg_wind_speed
       - sensor.yeg_humidity
       - sensor.yeg_visibility
-      - sensor.yeg_daily_high_apparent_temperature
-      - sensor.yeg_daily_low_apparent_temperature
       - sensor.yeg_nearest_storm_distance
+      - sensor.waqi_edmonton_south_alberta_canada
+      - sensor.waqi_edmonton_central_alberta_canada
+      - sensor.waqi_edmonton_east_alberta_canada
       
 Network conditions:
     name: Network health

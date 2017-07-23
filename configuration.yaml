@@ -25,6 +25,7 @@ http:
   # base_url: example.duckdns.org:8123
    ssl_certificate: !secret ssl_certificate
    ssl_key: !secret ssl_key
+   login_attempts_threshold: 3
 
 
 # Checks for available updates
@@ -65,20 +66,18 @@ sensor:
 #      - humidity
 #      - rain
 #      - snow
-  - platform: moon
   - platform: waqi
     token: !secret waqi_api_key
     locations:
       - edmonton
-    stations:
-      - Edmonton South, Alberta
+#    stations:
+#      - Edmonton South, Alberta
   - platform: darksky
     api_key: !secret api_key_darkSky
     name: YEG
     monitored_conditions:      
       - precip_intensity
       - precip_probability
-      - temperature
       - apparent_temperature
       - wind_speed
       - humidity
@@ -89,11 +88,10 @@ sensor:
       
 # Network condition
   - platform: fastdotcom
+    icon: mdi:server
     minute:
       - 0
       - 5
-  
-
       
 # ESP8266 Sensor:
   - platform: mqtt  
@@ -119,8 +117,13 @@ sensor:
     name: "Temperature"  
     unit_of_measurement: "°F"  
     value_template: '{{ value_json.temperature | round(1) }}'  
-  
-   
+
+  - platform: fixer
+    target: INR
+    base: CAD
+    name: C$ equals
+
+    
 light:  
   - platform: mqtt_json  
     name: "Board LED"  
@@ -231,3 +234,11 @@ media_player:
 #    name: Entrance
 
 
+binary_sensor:
+  - platform: workday
+    country: CA
+    province: AB
+    
+shiftr:
+  username: a99db3c3
+  password: a734752a61f19302
