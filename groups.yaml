@@ -5,9 +5,36 @@ sensor_node_1_card:
       - sensor.humidity  
       - sensor.light_intensity  
       - sensor.activity  
-      - light.board_led
+      - light.mb_led
+
+sensor_node_2_card:  
+    name: Living room  
+    entities:  
+      - sensor.temperature_2  
+      - sensor.humidity_2  
+      - sensor.light_intensity_2  
+      - sensor.activity_2  
+      - light.lr_led
       
-sensor_node_2_card:
+sensor_node_3_card:  
+    name: Smaller bedroom  
+    entities:  
+      - sensor.temperature_3  
+      - sensor.humidity_3
+      - sensor.light_intensity_3
+      - sensor.activity_3
+      - light.sb_led
+
+sensor_node_4_card:  
+    name: Garage floor
+    entities:  
+      - sensor.temperature_4
+      - sensor.humidity_4
+      - sensor.light_intensity_4
+      - sensor.activity_4
+      - light.garage_led
+      
+sensor_node_5_card:
     name: Living room
     entities:
       - switch.living_room_leds
@@ -87,3 +114,20 @@ Network conditions:
     entities:
       - sensor.fastcom_download
 
+Pawned emails:
+    name: Data breaches
+    view: no
+    icon: mdi:account-alert
+    entities:
+      - sensor.breaches_aindrilabasakgmailcom
+      - sensor.breaches_ghoshsoumalyagmailcom
+      - sensor.breaches_aindrilaualbertaca
+      - sensor.breaches_soumalyaualbertaca
+
+Version number:
+    name: HASS version
+    view: no
+    icon: mdi:home-assistant
+    entities:
+      - sensor.current_version
+      - sensor.web_scrape
